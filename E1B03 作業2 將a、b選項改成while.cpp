@@ -75,7 +75,6 @@ int main (void)
 		// 輸入選項 
 		printf("輸入一個選項:\n");
 		scanf(" %c",&abc);
-		printf("按下任意鍵繼續\n");
 		getch();
 		 
 		switch (abc)
@@ -84,45 +83,32 @@ int main (void)
 			case 'a':
 				{
 					system("cls");
-					while (1)
+					printf("請輸入一個'a'到'n'的字元:");
+					scanf(" %c",&ch);
+					if(ch<'a'||ch>'n')
 					{
-						printf("請輸入一個'a'到'n'的字元:");
-						scanf(" %c",&ch);
-						if(ch<'a'||ch>'n')
-						{
 						printf("輸入錯誤，請輸入'a'到'n'的字元\n");
-						scanf(" %c",&ch);
-						}
-						else
-						{
-							nin(t); // 執行顯示乘法表的函數
-							break;
-						}
-	
 					}
+					else
+						tri(ch); // 執行畫直角三角形的函數
 					break;
 				}
 			case 'B':
 			case 'b':
 				{
 					system("cls");
-					while (1)
+					printf("請輸入一個1~9的整數:\n");
+					scanf("%d",&t);
+					if(t<1||t>9)
 					{
-						printf("請輸入一個1~9的整數:\n");
+						printf("請輸入一個1~9的整數:");
 						scanf("%d",&t);
-						if(t<1||t>9)
-						{
-							printf("請輸入一個1~9的整數:\n");
-							scanf("%d",&t);
-						}
-						else
-						{
-							nin(t); // 執行顯示乘法表的函數
-							break;
-						}
-				
 					}
+					else
+						nin(t); // 執行顯示乘法表的函數
+
 					break;
+				
 				}
 			case 'C':
 			case 'c':
@@ -186,5 +172,4 @@ int main (void)
 	printf("按下任意鍵繼續\n");
  	getch();
  }
-
 

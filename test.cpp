@@ -134,18 +134,12 @@ int main (void)
 					system("cls");
 					printf("Continue? (y/n)\n");
 					scanf("%c",&con);
-					if (con=='y'&&con=='Y')
-							break;
-					else if (con=='n'||con=='N')
+					while (con!='y'&&con!='Y'&&con!='n'&&con!='N')
 					{
-						printf("程式結束\n");
-						return 0;
-					}
-					else
 						printf("輸入錯誤，請重新輸入:\n");
-						
-					
-					
+						printf("Continue? (y/n)\n");
+						scanf(" %c",&con);
+					}
 					if(con=='n'||con=='N')
 						return 0;
 					else

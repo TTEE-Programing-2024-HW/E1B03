@@ -5,6 +5,8 @@
 //在137行}後面加了break;
 // void tri(char ch)中的i改成x，j改成y
 //143、144改成while (1);	return 0; 
+//將112改成nin(t);
+//將152行改成for (char y = 'a'; y <= x; y++)
 #include<stdio.h>
 #include<stdlib.h>
 #include<conio.h>
@@ -108,7 +110,7 @@ int main (void)
 						scanf("%d",&t);
 					}
 					else
-						nin(num);
+						nin(t);
 
 					break;
 				
@@ -139,8 +141,7 @@ int main (void)
 				break;
 				
 		}
-	}
-	while (1);	
+	}while (1);	
 	return 0;
  } 
  
@@ -149,7 +150,7 @@ int main (void)
  	int x=1,y=1;
  	for (char x = 'a'; x <= ch; x++) 
 	 {
-    	for (char y = 'a'; y <= y; y++) 
+    	for (char y = 'a'; y <= x; y++) 
 		{
         	printf("%c ", y);
     	}

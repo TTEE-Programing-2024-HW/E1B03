@@ -1,12 +1,3 @@
-//去掉134行while(1);的分號 
-//75行加getch();將100行if(num<1||num>9)改成if(t<1||t>9) 
-//在137行}後面加了; 
-//137行刪掉while(1) 
-//在137行}後面加了break;
-// void tri(char ch)中的i改成x，j改成y
-//143、144改成while (1);	return 0; 
-//將112改成nin(t);
-//將152行改成for (char y = 'a'; y <= x; y++)
 #include<stdio.h>
 #include<stdlib.h>
 #include<conio.h>
@@ -46,7 +37,7 @@ int main (void)
 	printf("*********************************************************\n");
 	
 	
-	
+	//輸入密碼 
 	while(a<3)
 	{
 		printf("請輸入 4 個數字的密碼:");
@@ -58,7 +49,7 @@ int main (void)
 		else
 		{
 			a++;
-			printf("密碼錯誤%d次\n",3-a);
+			printf("密碼錯誤，剩下%d次機會\n",3-a);
 		}
 	}
 	if(a==3)
@@ -69,7 +60,7 @@ int main (void)
 	
 	do{
 		system("cls");
-		
+		//顯示主選單 
 		printf("*********************************************************\n");
 		printf("******                   主選單                    ******\n");
 		printf("*********************************************************\n");
@@ -78,8 +69,10 @@ int main (void)
 		printf("*                    c. 結束                            *\n");
 		printf("*********************************************************\n");
 		printf("\n");
-		printf("輸入一個選項\n");
-		scanf("%c",&abc);
+		//輸入選項 
+		printf("輸入一個選項:\n");
+		scanf(" %c",&abc);
+		printf("按enter繼續\n");
 		getch();
 		 
 		switch (abc)
@@ -88,11 +81,11 @@ int main (void)
 			case 'a':
 				{
 					system("cls");
-					printf("請輸入一個a~n的字元");
-					scanf("%c",&ch);
+					printf("請輸入一個'a'到'n'的字元:");
+					scanf(" %c",&ch);
 					if(ch<'a'||ch>'n')
 					{
-						printf("輸入錯誤，請輸入a~n的字元\n");
+						printf("輸入錯誤，請輸入'a'到'n'的字元\n");
 					}
 					else
 						tri(ch);
@@ -129,7 +122,7 @@ int main (void)
 					{
 						printf("錯誤訊息，請重新輸入:\n");
 						printf("Continue? (y/n)\n");
-						scanf("%c",&con);
+						scanf(" %c",&con);
 						getch();
 						break; 
 					}
@@ -137,8 +130,8 @@ int main (void)
 				}
 			default:
 				printf("輸入錯誤，請重新輸入選項:");
-				scanf("%c",&abc);
-				break;
+				scanf(" %c",&abc);
+				
 				
 		}
 	}while (1);	
@@ -165,7 +158,7 @@ int main (void)
  	int i=1,j=1;
  	while(i<=num)
  	{
- 		while(j<=num)	
+ 		while(j<=num)
  		{
  			printf("%d*%d=%2d",i,j,i*j);
  			j++;
