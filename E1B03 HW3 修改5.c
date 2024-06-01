@@ -252,11 +252,11 @@ void arrangeseats(char seats[ROW][COL])
 	if(confirm=='y'||confirm=='Y')
 	{
 		markseat(seats,suggest,needseat);
-		printf("座位已成功預定!\n");
+		printf("座位已成功預定!");
 	}
 	else
 	{
-		printf("座位未成功預定\n");
+		printf("座位未成功預定");
 	}
 	printf("按任意鍵返回主選單\n");
 	getchar();
@@ -279,7 +279,8 @@ void chooseseat(char seats[ROW][COL])
 	else
 	{
 		seats[row][col]='@';
-		printf("座位已成功預定!\n");
+		printf("座位已成功預定!");
+		printf("按\n");
 	}
 	printf("按任意鍵返回主選單\n");
 	getchar();

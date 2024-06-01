@@ -13,10 +13,11 @@ void displayseats(char seats[ROW][COL]);
 void canuseseats(char seats[ROW][COL]);
 void arrangeseats(char seats[ROW][COL]);
 void chooseseat(char seats[ROW][COL]);
+int confirmexit();
 int main()
 {
 	char choice;
-
+	int password=2024,n,a=0;
 	srand(time(0));
 	
 	// 顯示程序開始的畫面
@@ -68,10 +69,11 @@ int main()
 		return 0;
 	}
 	char seats[ROW][COL];
-	for(int i=0;i<ROW;++i)
+	int i,j;
+	for(i=0;i<ROW;++i)
 	{
-		for(int j=0;j<ROW;++j)
-			seats[i][j]='-'//將未佔位座位標記為- 
+		for(j=0;j<ROW;++j)
+			seats[i][j]='-';//將未佔位座位標記為- 
 	}
 	startseats(seats);
 	
@@ -88,13 +90,16 @@ int main()
 				canuseseats(seats);
 				break;
 			case 'b':
-				
+				arrangeseats(seats);
 				break;
 			case 'c':
-				
+				chooseseat(seats);
 				break;
 			case 'd':
-				
+				if (confirmexit())
+				{
+					return 0;
+				}
 				break;
 			default:
 				printf("無效選擇，請重新輸入\n");
@@ -116,7 +121,7 @@ void startseats(char seats[ROW][COL])
 		int col=rand() % COL;
 		if(seats[row][col]=='-')
 		{
-			seats[row][col]='*'
+			seats[row][col]='*';
 			bookcount++;
 		}
 	}
@@ -131,16 +136,17 @@ void mainmenu()
 	printf("|    c. Choose by yourself         |\n");
 	printf("|    d. Exit                       |\n");
 	printf("------------------------------------\n");
-	printf("請輸入你的選擇:")
+	printf("請輸入你的選擇:");
 }
 //顯示座位表 
 void displayseats(char seats[ROW][COL])
 {
 	printf("123456789\n");
-	for(int i=0;i<ROW;i++)
+	int i,j;
+	for(i=0;i<ROW;i++)
 	{
 		printf("%d".ROW-1);
-		for(int j=0;j<COL;j++)
+		for(j=0;j<COL;j++)
 			printf("%c",seats[i][j]);
 			printf("\n");
 	}
@@ -168,12 +174,13 @@ void arrangeseats(char seats[ROW][COL])
 	}
 	int suggest[4][2];
 	int found=0;
-	for(int row=0;row<ROW&&!found;++row)
+	int row,col,k;
+	for(row=0;row<ROW&&!found;++row)
 	{
-		for(int col=0;col<=COL-needseat&&!found;++col)
+		for(col=0;col<=COL-needseat&&!found;++col)
 		{
 			int available=1;
-			for(int k;k<needseat;++k)
+			for(k=0;k<needseat;++k)
 			{
 				if(seats[ROW][COL+k]!='-')
 				{
@@ -183,7 +190,7 @@ void arrangeseats(char seats[ROW][COL])
 			}
 			if(available)
 			{
-				for(int k=0;k<needseat;++k)
+				for(k=0;k<needseat;++k)
 				{
 					suggest[k][0]=row;
 					suggest[k][1]=col+k;
@@ -194,9 +201,9 @@ void arrangeseats(char seats[ROW][COL])
 	}
 	if(!found&&needseat==4)
 	{
-		for(int row=0;row<R0W-1&&!found;++row)
+		for(row=0;row<ROW-1&&!found;++row)
 		{
-			for(int col=0;col<COL&&!found;++col)
+			for(col=0;col<COL&&!found;++col)
 			{
 				if(seats[row][col]=='-'&&seats[row+1][col]=='-'&&seats[row][col+1]=='-'&&seats[row+1][col+1]=='-')
 				{
@@ -221,18 +228,19 @@ void arrangeseats(char seats[ROW][COL])
 		return;
 	}
 	char markseats[ROW][COL];
-	for(int i=0;i<ROW;++i)
+	int i,j;
+	for(i=0;i<ROW;++i)
 	{
-		for(int j=0;j<COL;++j)
+		for(j=0;j<COL;++j)
 		{
 			markseats[i][j];
 		}
 	}
-	for(int i=0;i<needseat;++i)
+	for(i=0;i<needseat;++i)
 	{
 		markseats[suggest[i][0]][suggest[i][1]]='@';
 	}
-	displayseats(markseats)
+	displayseats(markseats);
 	printf("請確認這些座位(y/n):");
 	char confirm=getchar();
 	getchar();
@@ -281,8 +289,9 @@ int confirmexit()
 }
 void mark2seat(char seats[ROW][COL],int position[][2],int size)
 {
-	for(int i=0;i<size;++i)
+	int i;
+	for(i=0;i<size;++i)
 	{
-		seats[position[i][0]][position[i][1]]='*'
+		seats[position[i][0]][position[i][1]]='*';
 	}
 }

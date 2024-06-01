@@ -3,15 +3,15 @@
 #include<string.h>
 #include<time.h> 
 
-#define row 9
-#define col 9
+#define ROW 9
+#define COL 9
 
 
-void startseats(char seats[row][col]);
+void startseats(char seats[ROW][COL]);
 void mainmenu();
-void displayseats(char seats[row][col]);
-void canuseseats(char seats[row][col]);
-void arrangeseats(char seats[row][col]);
+void displayseats(char seats[ROW][COL]);
+void canuseseats(char seats[ROW][COL]);
+void arrangeseats(char seats[ROW][COL]);
 int main()
 {
 	char choice;
@@ -66,10 +66,10 @@ int main()
 		printf("錯誤次數超過3次，程序退出\n");
 		return 0;
 	}
-	char seats[row][col];
-	for(int i=0;i<row;++i)
+	char seats[ROW][COL];
+	for(int i=0;i<ROW;++i)
 	{
-		for(int j=0;j<row;++j)
+		for(int j=0;j<ROW;++j)
 			seats[i][j]='-'//將未佔位座位標記為- 
 	}
 	startseats(seats);
@@ -106,13 +106,13 @@ int main()
 	return 0;
 }
 //隨機生成初始座位 
-void startseats(char seats[row][col])
+void startseats(char seats[ROW][COL])
 {
 	int bookcount=0;
 	while(bookcount<10)
 	{
-		int row=rand() % row;
-		int col=rand() % col;
+		int row=rand() % ROW;
+		int col=rand() % COL;
 		if(seats[row][col]=='-')
 		{
 			seats[row][col]='*'
@@ -133,19 +133,19 @@ void mainmenu()
 	printf("請輸入你的選擇:")
 }
 //顯示座位表 
-void displayseats(char seats[row][col])
+void displayseats(char seats[ROW][COL])
 {
 	printf("123456789\n");
-	for(int i=0;i<row;i++)
+	for(int i=0;i<ROW;i++)
 	{
-		printf("%d".row-1);
-		for(int j=0;j<col;j++)
+		printf("%d".ROW-1);
+		for(int j=0;j<COL;j++)
 			printf("%c",seats[i][j]);
 			printf("\n");
 	}
 }
 //處理現有座位 
-void canuseseats(char seats[row][col])
+void canuseseats(char seats[ROW][COL])
 {
 	system("cls");
 	displayseats(seats);
@@ -153,7 +153,7 @@ void canuseseats(char seats[row][col])
 	getchar();
 }
 //自動安排座位 
-void arrangeseats(char seats[row][col])
+void arrangeseats(char seats[ROW][COL])
 {
 	system("cls");
 	int needseat;
@@ -165,4 +165,59 @@ void arrangeseats(char seats[row][col])
 		printf("無效座位數\n");
 		return;
 	}
+	int suggest[4][2];
+	int found=0;
+	for(int row=0;row<ROW&&!found;++row)
+	{
+		for(int col=0;col<=COL-needseat&&!found;++col)
+		{
+			int available=1;
+			for(int k;k<needseat;++k)
+			{
+				if(seats[ROW][COL+k]!='-')
+				{
+					available=0;
+					break;
+				}
+			}
+			if(available)
+			{
+				for(int k=0;k<needseat;++k)
+				{
+					suggest[k][0]=row;
+					suggest[k][1]=col+k;
+				}
+				found=1;
+			}
+		}
+	}
+	if(!found&&needseat==4)
+	{
+		for(int row=0;row<R0W-1&&!found;++row)
+		{
+			for(int col=0;col<COL&&!found;++col)
+			{
+				if(seats[row][col]=='-'&&seats[row+1][col]=='-'&&seats[row][col+1]=='-'&&seats[row+1][col+1]=='-')
+				{
+					suggest[0][0]=row;
+					suggest[0][1]=col;
+					suggest[1][0]=row;
+					suggest[1][1]=col+1;
+					suggest[2][0]=row+1;
+					suggest[2][1]=col;
+					suggest[3][0]=row+1;
+					suggest[3][1]=col+1;
+					found =1;
+				}
+			}
+		}
+	}
+	if(!found)
+	{
+		printf("沒有適合的座位。返回主選單\n");
+		return;
+	}
+	char temseats[ROW][COL];
+	
+	
 }

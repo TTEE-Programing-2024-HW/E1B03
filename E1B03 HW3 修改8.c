@@ -133,12 +133,12 @@ void startseats(char seats[ROW][COL])
 //顯示主選單 
 void mainmenu()
 {
-	printf("----------[Booking System]----------\n");
-	printf("|    a. Available seats            |\n");
-	printf("|    b. Arrange for you            |\n");
-	printf("|    c. Choose by yourself         |\n");
-	printf("|    d. Exit                       |\n");
-	printf("------------------------------------\n");
+	printf("----------[Booking System]----------------------\n");
+	printf("|    a. Available seats     (可用座位)         |\n");
+	printf("|    b. Arrange for you     (自動選位)         |\n");
+	printf("|    c. Choose by yourself  (手動選位)         |\n");
+	printf("|    d. Exit                (離開)             |\n");
+	printf("------------------------------------------------\n");
 	printf("請輸入你的選擇:");
 }
 //顯示座位表 
@@ -159,7 +159,7 @@ void canuseseats(char seats[ROW][COL])
 {
 	system("cls");
 	displayseats(seats);
-	printf("按任意鍵返回主選單\n");
+	printf("按Enter返回主選單\n");
 	getchar();
 }
 //自動安排座位 
@@ -226,7 +226,7 @@ void arrangeseats(char seats[ROW][COL])
 	if(!found)
 	{
 		printf("沒有適合的座位\n");
-		printf("按任意鍵返回主選單\n");
+		printf("按Enter返回主選單\n");
 		getchar();
 		return;
 	}
@@ -252,13 +252,15 @@ void arrangeseats(char seats[ROW][COL])
 	if(confirm=='y'||confirm=='Y')
 	{
 		markseat(seats,suggest,needseat);
-		printf("座位已成功預定!");
+		printf("預定成功!");
+		printf("\n");
 	}
 	else
 	{
-		printf("座位未成功預定。");
+		printf("未預定成功。");
+		printf("\n");
 	}
-	printf("按任意鍵返回主選單");
+	printf("按Enter返回主選單");
 	getchar();
 }
 void chooseseat(char seats[ROW][COL])
@@ -274,16 +276,18 @@ void chooseseat(char seats[ROW][COL])
 	col=col-1;
 	if(row<0||row>=ROW||col<0||col>=COL||seats[row][col]!='-')
 	{
-		printf("無效的座位或座位已被佔用\n");
+		printf("無效的座位或座位已被佔用");
+		printf("\n");
 	}
 	else
 	{
 		seats[row][col]='*';
-		printf("座位已成功預定!");
+		printf("預定成功!");
+		printf("\n");
 		displayseats(seats);
 	}
 	
-	printf("按任意鍵返回主選單\n");
+	printf("按Enter返回主選單 \n");
 	getchar();
 }
 int confirmexit()

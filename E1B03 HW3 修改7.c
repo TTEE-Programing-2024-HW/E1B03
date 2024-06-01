@@ -144,7 +144,7 @@ void mainmenu()
 //顯示座位表 
 void displayseats(char seats[ROW][COL])
 {
-	printf("123456789\n");
+	printf("  123456789\n");
 	int i,j;
 	for(i=0;i<ROW;i++)
 	{
@@ -252,11 +252,11 @@ void arrangeseats(char seats[ROW][COL])
 	if(confirm=='y'||confirm=='Y')
 	{
 		markseat(seats,suggest,needseat);
-		printf("座位已成功預定");
+		printf("座位已成功預定!");
 	}
 	else
 	{
-		printf("座位未成功預定");
+		printf("座位未成功預定。");
 	}
 	printf("按任意鍵返回主選單");
 	getchar();
@@ -280,8 +280,9 @@ void chooseseat(char seats[ROW][COL])
 	{
 		seats[row][col]='*';
 		printf("座位已成功預定!");
+		displayseats(seats);
 	}
-	dispiayseats(seats);
+	
 	printf("按任意鍵返回主選單\n");
 	getchar();
 }

@@ -85,7 +85,7 @@ int main()
 		mainmenu();
 		choice=getchar();
 		getchar();
-		clearinput()
+		clearinput();
 		
 		switch(choice)
 		{
@@ -148,10 +148,10 @@ void displayseats(char seats[ROW][COL])
 	int i,j;
 	for(i=0;i<ROW;i++)
 	{
-		printf("%d".ROW-1);
+		printf("%d".i+1);
 		for(j=0;j<COL;j++)
 			printf("%c",seats[i][j]);
-			printf("\n");
+		printf("\n");
 	}
 }
 //處理現有座位 
@@ -169,7 +169,7 @@ void arrangeseats(char seats[ROW][COL])
 	int needseat;
 	printf("你需要幾個座位（1~4）?\n");
 	scanf("%d",&needseat);
-	getchar();
+	clearinput();
 	if(needseat<1||needseat>4)
 	{
 		printf("無效座位數\n");
@@ -185,7 +185,7 @@ void arrangeseats(char seats[ROW][COL])
 			int available=1;
 			for(k=0;k<needseat;++k)
 			{
-				if(seats[ROW][COL+k]!='-')
+				if(seats[row][col+k]!='-')
 				{
 					available=0;
 					break;
@@ -236,21 +236,22 @@ void arrangeseats(char seats[ROW][COL])
 	{
 		for(j=0;j<COL;++j)
 		{
-			temseats[i][j];
+			temseats[i][j]=seats[i][j];
 		}
 	}
 	for(i=0;i<needseat;++i)
 	{
 		temseats[suggest[i][0]][suggest[i][1]]='@';
 	}
-	displayseats(markseats);
+	displayseats(temseats);
 	printf("請確認這些座位(y/n):");
 	char confirm=getchar();
 	getchar();
+	clearinput();
 	
 	if(confirm=='y'||confirm=='Y')
 	{
-		markseats(seats,suggest,needseat);
+		markseat(seats,suggest,needseat);
 		printf("座位已成功預定!\n");
 	}
 	else
@@ -267,10 +268,10 @@ void chooseseat(char seats[ROW][COL])
 	int row,col;
 	printf("請輸入座位的行跟列，例如 1-2、 2-9 代表[列 1,行 2]及[列 2,行 9]兩個座位");
 	scanf("%d-%d",&row,&col);
-	getchar();
+	clearinput();
 	
-	row=ROW-row;
-	col-=1;
+	row=row-1;
+	col=col-1;
 	if(row<0||row>=ROW||col<0||col>=COL||seats[row][col]!='-')
 	{
 		printf("無效的座位或座位已被佔用\n");
@@ -287,7 +288,7 @@ int confirmexit()
 {
 	printf("你確定要退出嗎?(y/n):");
 	char confirm=getchar();
-	getchar();
+	clearinput();
 	return (confirm=='y'||confirm=='Y');
 }
 void markseat(char seats[ROW][COL],int position[][2],int size)

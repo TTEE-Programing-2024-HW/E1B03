@@ -148,7 +148,7 @@ void displayseats(char seats[ROW][COL])
 	int i,j;
 	for(i=0;i<ROW;i++)
 	{
-		printf("%d".i+1);
+		printf("%d",i+1);
 		for(j=0;j<COL;j++)
 			printf("%c",seats[i][j]);
 		printf("\n");

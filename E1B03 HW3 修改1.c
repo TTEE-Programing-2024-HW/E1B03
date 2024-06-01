@@ -14,6 +14,7 @@ void canuseseats(char seats[ROW][COL]);
 void arrangeseats(char seats[ROW][COL]);
 void chooseseat(char seats[ROW][COL]);
 int confirmexit();
+void markseat(char seats[ROW][COL],int position[][2],int size);
 int main()
 {
 	char choice;
@@ -227,18 +228,18 @@ void arrangeseats(char seats[ROW][COL])
 		getchar();
 		return;
 	}
-	char markseats[ROW][COL];
+	char temseats[ROW][COL];
 	int i,j;
 	for(i=0;i<ROW;++i)
 	{
 		for(j=0;j<COL;++j)
 		{
-			markseats[i][j];
+			temseats[i][j];
 		}
 	}
 	for(i=0;i<needseat;++i)
 	{
-		markseats[suggest[i][0]][suggest[i][1]]='@';
+		temseats[suggest[i][0]][suggest[i][1]]='@';
 	}
 	displayseats(markseats);
 	printf("請確認這些座位(y/n):");
@@ -287,7 +288,7 @@ int confirmexit()
 	getchar();
 	return (confirm=='y'||confirm=='Y');
 }
-void mark2seat(char seats[ROW][COL],int position[][2],int size)
+void markseat(char seats[ROW][COL],int position[][2],int size)
 {
 	int i;
 	for(i=0;i<size;++i)
